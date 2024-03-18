@@ -1,4 +1,3 @@
-// server.js
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -10,10 +9,10 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+
 app.use(bodyParser.json());
 
-// MongoDB setup
+
 mongoose.connect("mongodb://localhost:27017/login-signup-form")
   .then(() => {
     console.log("MongoDB connected successfully");
@@ -32,7 +31,7 @@ const User = mongoose.model("User", {
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
 
-// Signup route
+
 app.post("/signup", async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -60,7 +59,7 @@ app.post("/signup", async (req, res) => {
     }
 });
 
-// Login route
+
 app.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -87,7 +86,7 @@ app.post("/login", async (req, res) => {
     }
 });
 
-// Server
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
